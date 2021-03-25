@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
+const fs = require('fs')
 const cpy = require('cpy')
 const path = require('path')
 
 class copyLib {
   constructor() {
-    const { src, dst, lib } = require(this.argv('data'))
+    const { src, dst, lib } = this.getData()
     this.src = src
     this.dst = dst
     this.lib = lib
@@ -16,6 +17,13 @@ class copyLib {
       const destination = path.join(this.dst, value)
       await cpy(source, destination)
       console.log(`Copied ${source} >> ${destination}`)
+    }
+  }
+  getData() {
+    try {
+      return JSON.parse(fs.readFileSync(this.argv('data'), 'utf-8'))
+    } catch (error) {
+      return this.getData() // sometimes the data is empty, so we have to get it again
     }
   }
   argv(key) {
