@@ -1,0 +1,11 @@
+{
+  "name": "copy-lib",
+  "version": "1.0.0",
+  "bin": "index.js",
+  "repository": "https://github.com/erwinheldy/copy-lib.git",
+  "author": "Erwin Heldy G <erwin.developer@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cpy": "^8.1.2"
+  }
+}
